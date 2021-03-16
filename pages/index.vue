@@ -25,7 +25,7 @@
         <p class="location"> {{ job.location }} </p>
       </div>
     </div>
-    <button class="loadMore">Load More</button>
+    <button @click="loadmore()" class="loadMore">Load More</button>
   </div>
 </template>
 
@@ -53,7 +53,9 @@ export default {
       axios.get(URL + "?description=" + this.company + "&location=" + this.location).then(res => {
         this.jobs = res.data;
       })
-
+    },
+    loadmore() {
+      axios.get()
     }
   }
 }
