@@ -5,15 +5,15 @@
     </div>
     <div class="search">
       <div class="companyFilter">
-        <input type="text" placeholder="Filter by title, companies, expertise">
+        <input type="text" placeholder="Filter by title, companies, expertise" name="company" v-model="company">
       </div>
       <div class="locationFilter">
-        <input type="text" placeholder="Filter by location...">
+        <input type="text" placeholder="Filter by location..." name="location" v-model="location">
       </div>
       <div class="buttons">
-        <input type="checkbox">
+        <input type="checkbox" name="checkbox" v-model="checkbox">
         <p>Full Time Only</p>
-        <input type="button" value="Search">
+        <button type="submit" @click.stop.prevent="submit()">Search</button>
       </div>
     </div>
     <div class="jobsection">
@@ -40,7 +40,19 @@ export default {
   },
   data () {
     return {
-      jobs: []
+      jobs: [],
+      company: null,
+      location: null,
+      checkbox: null,
+    }
+  },
+  methods: {
+    submit() {
+      this.jobs = [];
+      axios.get(URL + "?description=" + this.company + "&location=" + this.location).then(res => {
+        this.jobs = res.data;
+      })
+
     }
   }
 }
@@ -60,12 +72,13 @@ export default {
   min-height: 100px;
   border-bottom-left-radius: 50px;
   padding: 50px;
+  padding-left: 250px;
 }
 
 .search {
   margin: 0 auto;
   margin-top: -20px;
-  max-width: 600px;
+  max-width: 700px;
   padding: 10px;
   border-radius: 10px;
   background-color: white;
@@ -75,43 +88,79 @@ export default {
 }
 
 .companyFilter {
-  margin-right: 10px;
+  margin-right: 15px;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .companyFilter input {
   border: none;
+  padding: 20px;
 }
 
 .locationFilter {
-  margin-right: 10px;
+  margin-right: 15px;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .locationFilter input {
   border: none;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+}
+
+.buttons button {
+  border: none;
+  background-color: rgb(209, 0, 209);
+  color: white;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.buttons input {
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.buttons p {
+  margin-right: 10px;
 }
 
 .jobsection {
   display: flex;
   flex-wrap: wrap;
-  padding: 50px;
+  justify-content: center;
+  padding: 250px;
+  padding-top: 50px;
 }
 
 .jobcard {
-  margin-top: 10px;
+  flex: 1 0 30%;
+  margin-bottom: 20px;
   margin-right: 10px;
   padding: 15px;
-  width: 350px;
+  max-width: 350px;
+  min-height: 150px;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.192);
 }
 
+.jobcard h2 {
+  font-size: 16px;
+}
+
+.jobcard p {
+  opacity: 50%;
+  font-size: 14px;
+}
+
 .companyLogo {
+  margin-top: -40px;
   width: 40px;
   border-radius: 5px;
 }
