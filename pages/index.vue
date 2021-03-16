@@ -160,9 +160,7 @@ export default {
 }
 
 .companyLogo {
-  margin-top: -40px;
   width: 40px;
-  border-radius: 5px;
-}
+} 
 
 </style>
