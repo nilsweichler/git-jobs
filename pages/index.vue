@@ -25,6 +25,7 @@
         <p class="location"> {{ job.location }} </p>
       </div>
     </div>
+    <button class="loadMore">Load More</button>
   </div>
 </template>
 
@@ -62,6 +63,7 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
+  text-align: center;
 }
 
 .header {
@@ -138,9 +140,11 @@ export default {
   justify-content: center;
   padding: 250px;
   padding-top: 50px;
+  padding-bottom: 20px;
 }
 
 .jobcard {
+  text-align: left;
   flex: 1 0 30%;
   margin-bottom: 20px;
   margin-right: 10px;
@@ -161,6 +165,16 @@ export default {
 
 .companyLogo {
   width: 40px;
-} 
+}
+
+.loadMore {
+  border: none;
+  background-color: rgb(209, 0, 209);
+  color: white;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 
 </style>
